@@ -130,7 +130,7 @@ class Paging{
     }
 
     public void fetchingPageFromMainMemory(){
-        //Fetching the page from the main memory and dispyaing where it is found
+        //Fetching the page from the main memory and displaying where it is found
         
         //fetching page only if the logical address is valid
         if(verifyLogicalAddress){
