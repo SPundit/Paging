@@ -42,21 +42,21 @@ class Paging{
         mainMemory.clear(); mainMemEq.clear(); pageTable.clear();
 
         //Following 6 lines speak for themselves
-        System.out.print("Specify the size of each page or the size of each frame: ");
+        System.out.print("\nSpecify the size of each page or the size of each frame: ");
         framePageSize=askScanner.nextInt();
 
-        System.out.print("Specify the number of pages for the process: ");
+        System.out.print("\nSpecify the number of pages for the process: ");
         totalPages= askScanner.nextInt();
 
         //Loop is present to ensure that the algorithm will work until the user 
         //enters number of frames such that they are more than the number of pages
         while(!verifyMaxFrames){
-            System.out.print("Specify the total number of frames in the main memory: ");
+            System.out.print("\nSpecify the total number of frames in the main memory: ");
             totalFrames=askScanner.nextInt();
             if(totalFrames>totalPages)
                 verifyMaxFrames=true;
             else{
-                System.out.println("Number of frames must be greater than the number of pages."+
+                System.out.println("\nNumber of frames must be greater than the number of pages."+
                 "Please enter number of frames again.");
             }
         }
@@ -88,8 +88,8 @@ class Paging{
 
     public void contentsOfTables(){
         //Displaying the page table contents and the main memory contents
-        System.out.println("pageTable contains: "+ pageTable);
-        System.out.println("mainMemory contains: "+ mainMemory);
+        System.out.println("\n\npageTable contains: "+ pageTable);
+        System.out.println("\n\nmainMemory contains: "+ mainMemory);
     }
 
     public void getLogicalAddress(){
@@ -98,7 +98,7 @@ class Paging{
         verifyLogicalAddress=true;
         
         //Asking user for the logical address
-        System.out.print("For the logical address, enter the page number: ");
+        System.out.print("\nFor the logical address, enter the page number: ");
         pageNumber=s.nextInt();
 
         System.out.print("enter the offset for the current logical address: ");
@@ -110,7 +110,7 @@ class Paging{
 
         logicalAddress="|| "+ pageNumber +" || "+offset+" ||";
         
-        System.out.println("The logical address to generated is:  "+ logicalAddress);
+        System.out.println("\nThe logical address to generated is:  "+ logicalAddress);
         
     }
 
@@ -119,13 +119,13 @@ class Paging{
          //Physical address is only determined if the specified logical address is valid
          if(verifyLogicalAddress){
             frameNumber=pageTable.get(pageNumber);
-            System.out.println("Frame number as fetched from the page table:  "+ frameNumber);
+            System.out.println("\nFrame number as fetched from the page table:  "+ frameNumber);
             physicalAddress="|| "+ frameNumber+" || "+ offset+" ||";
-            System.out.println("The physical address generated is:   "+ physicalAddress);
+            System.out.println("\nThe physical address generated is:   "+ physicalAddress);
          }
          else{
-            System.out.println("!!!--- The combiantion, ||page number||offset||,"
-            +"as requested by CPU is invalid or is out of bounds ---!!!");
+            System.out.println("\n\n!!!--- The combiantion, ||page number||offset||,"
+            +"as requested by CPU is invalid or is out of bounds ---!!!\n\n");
          }
     }
 
@@ -134,14 +134,14 @@ class Paging{
         
         //fetching page only if the logical address is valid
         if(verifyLogicalAddress){
-            System.out.println("Fetching content of the ||page number||offset||, as requestd by the logical address: ");
+            System.out.println("\nFetching content of the ||page number||offset||, as requestd by the logical address: ");
         pageFoundAt=mainMemory.get(frameNumber);
         atOffset=frameNumber+offset;
-        System.out.println("CPU requested access to page number:  "+ pageFoundAt+"\n"+
+        System.out.println("\nCPU requested access to page number:  "+ pageFoundAt+"\n"+
         "which is present at the frame number: "+frameNumber+"\nat an offset of:  "+ atOffset);
         }
         else{
-            System.out.println("Please provide a valid combination of ||page number||offset||. Valid page numbers include: ");
+            System.out.println("\nPlease provide a valid combination of ||page number||offset||. Valid page numbers include: ");
             System.out.println(pageTable.keySet());
         }
     }
@@ -152,7 +152,7 @@ public class App {
 
         Scanner askMe= new Scanner(System.in);
         
-        boolean play= true, fetch=true;
+        String play= "yes", fetch="yes";
         //Objective of either variables is mentioned when encountered further in the code.
 
         /*The object, cpu is the object of the class Paging.
@@ -161,27 +161,27 @@ public class App {
 
         /*Loop is written so that the algorithm executes for as long 
         as the user is interested in watching it work*/
-        while(play){
+        while(play.equals("yes") || play.equals("Yes")){
             cpu.getSizes();
             cpu.getTotalMemorySpace();
             cpu.allocatePagesToFrames();
             
             //Loop is written in case implementation is to be tested for multiple page fetches
-            while(fetch){
+            while(fetch.equals("yes") || fetch.equals("Yes")){
                 cpu.contentsOfTables();
                 cpu.getLogicalAddress();
                 cpu.determiningPhysicalAddress();
                 cpu.fetchingPageFromMainMemory();
-                System.out.print("Do you want to fetch a page again? ");
-                fetch=askMe.nextBoolean();
+                System.out.print("\nDo you want to fetch a page again? ");
+                fetch=askMe.nextLine();
             }
-            System.out.print("Do you want to test the implemntation with a fresh set of sizes? ");
-            play=askMe.nextBoolean();
-            fetch=true;
+            System.out.print("\nDo you want to test the implemntation with a fresh set of sizes? ");
+            play=askMe.nextLine();
+            fetch="yes";
         }
 
         askMe.close();
-        System.out.println("Presented to you by:\n\tShreyas Kumar\n\tSirish Pandit\n\tSneha Sural\n\tSuhas Pai");
+        System.out.println("\nPresented to you by:\n\tShreyas Kumar\n\tSirish Pandit\n\tSneha Sural\n\tSuhas Pai");
                 
     }
 }
