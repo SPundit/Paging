@@ -110,7 +110,7 @@ class Paging{
 
         logicalAddress="|| "+ pageNumber +" || "+offset+" ||";
         
-        System.out.println("\nThe logical address to generated is:  "+ logicalAddress);
+        System.out.println("\nThe logical address generated is:  "+ logicalAddress);
         
     }
 
