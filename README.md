@@ -26,7 +26,7 @@ Side Note:
 **PTBR**- The Page Table Base Register. It points to the page numbers of the page table.
 
 ## Below is a diagramatic representation of a CPU requesting information of a certain page.
-![[PagingDiagram.png]]
+![someText](PagingDiagram.png)
 
 
 # Contents of the Code
