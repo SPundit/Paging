@@ -172,10 +172,10 @@ public class App {
                 cpu.getLogicalAddress();
                 cpu.determiningPhysicalAddress();
                 cpu.fetchingPageFromMainMemory();
-                System.out.print("\nDo you want to fetch a page again? ");
+                System.out.print("\nDo you want to fetch a page again? (yes or no) ");
                 fetch=askMe.nextLine();
             }
-            System.out.print("\nDo you want to test the implemntation with a fresh set of sizes? ");
+            System.out.print("\nDo you want to test the implemntation with a fresh set of sizes? (yes or no) ");
             play=askMe.nextLine();
             fetch="yes";
         }
